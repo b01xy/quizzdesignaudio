@@ -2,11 +2,14 @@
 
 public void controlEvent(ControlEvent theEvent) {
 
-
     // Lorsqu'on appuie sur un bouton émotion
   if(theEvent.isController()) { 
+    //println("got a control event from controller  "+theEvent.isController());
+    //println("got a control event from controller with id "+theEvent.getController().getId());
+    //println("got a control event from controller with value "+theEvent.getController().getValue());
+    //println("got a control event from controller with name "+theEvent.getController().getName());
     // String controlname = theEvent.controller().getName();
-    float controlval = theEvent.controller().getValue();
+    float controlval = theEvent.getController().getValue();
     float controlid = theEvent.getController().getId();
     int controlvali=int(controlval);
     // on inscrit la valeur dans le tableau à chaque fois que l'on clic sur un bouton
@@ -28,11 +31,12 @@ public void controlEvent(ControlEvent theEvent) {
 
     
     // BTN SUIVANT
+
     if(theEvent.controller().getName()=="SUIVANT") {
       if(page==0){
          // On charge le fichier et on remplies de 0 les 11 lignes
-         lesstats = loadTable("statistiques.csv", "header");
-         // INITIALISATION DU TABLEAU
+         lesstats = loadTable(statistiquescsv, "header");
+         // IITIALISATION DU TABLEAU
          for (int i=0; i<11; i++){
            lesstats.setInt(i, 0, i+1);
            for (int j=1; j<4; j++){
@@ -43,21 +47,36 @@ public void controlEvent(ControlEvent theEvent) {
         }
       if(page >= 0 && page < 12){
         cp5.getGroup("repl").hide();
-        if(page==0){Track0.stop(); Track0.release();}
-        if(page==1){Track1.stop(); Track1.release();}
-        if(page==2){Track2.stop(); Track2.release();}
-        if(page==3){Track3.stop(); Track3.release();}  
-        if(page==4){Track4.stop(); Track4.release();}
-        if(page==5){Track5.stop(); Track5.release();}
-        if(page==6){Track6.stop(); Track6.release();}    
-        if(page==7){Track7.stop(); Track7.release();}
-        if(page==8){Track8.stop(); Track8.release();}
-        if(page==9){Track9.stop(); Track9.release();}    
-        if(page==10){Track10.stop(); Track10.release();}
-        if(page==11){Track11.stop(); Track11.release();}   
+        //if(page==0){Track0.stop(); Track0.release();}
+        //if(page==1){Track1.stop(); Track1.release();}
+        //if(page==2){Track2.stop(); Track2.release();}
+        //if(page==3){Track3.stop(); Track3.release();}  
+        //if(page==4){Track4.stop(); Track4.release();}
+        //if(page==5){Track5.stop(); Track5.release();}
+        //if(page==6){Track6.stop(); Track6.release();}    
+        //if(page==7){Track7.stop(); Track7.release();}
+        //if(page==8){Track8.stop(); Track8.release();}
+        //if(page==9){Track9.stop(); Track9.release();}    
+        //if(page==10){Track10.stop(); Track10.release();}
+        //if(page==11){Track11.stop(); Track11.release();}
+        if(page==0){Track0.pause();}
+        if(page==1){Track1.pause();}
+        if(page==2){Track2.pause();}
+        if(page==3){Track3.pause();}  
+        if(page==4){Track4.pause();}
+        if(page==5){Track5.pause();}
+        if(page==6){Track6.pause();}    
+        if(page==7){Track7.pause();}
+        if(page==8){Track8.pause();}
+        if(page==9){Track9.pause();}    
+        if(page==10){Track10.pause();}
+        if(page==11){Track11.pause();}   
           };
       if(page==11){
-         saveTable(lesstats, "statistiques.csv");
+        saveTable(lesstats, statistiquescsv);
+        saveMyTable(lesstats, statistiquescsv);
+         //saveTable(lesstats, "/storage/emulated/0/Download/statistiquescsv");
+         println("lesstats" + sketchPath);
          statshow.dostats();
          statshow.doLOG();
          cp5.getGroup("accu").hide();
@@ -71,19 +90,31 @@ public void controlEvent(ControlEvent theEvent) {
     // BTN ACCUEIL    
     if(theEvent.controller().getName()=="ACCUEIL") {
         if(page>0 && page<12){
-       
-            if(page==0){Track0.stop(); Track0.release();}
-            if(page==1){Track1.stop(); Track1.release();}
-            if(page==2){Track2.stop(); Track2.release();}
-            if(page==3){Track3.stop(); Track3.release();}  
-            if(page==4){Track4.stop(); Track4.release();}
-            if(page==5){Track5.stop(); Track5.release();}
-            if(page==6){Track6.stop(); Track6.release();}    
-            if(page==7){Track7.stop(); Track7.release();}
-            if(page==8){Track8.stop(); Track8.release();}
-            if(page==9){Track9.stop(); Track9.release();}    
-            if(page==10){Track10.stop(); Track10.release();}
-            if(page==11){Track11.stop(); Track11.release();} 
+
+            //if(page==0){Track0.stop(); Track0.release();}
+            //if(page==1){Track1.stop(); Track1.release();}
+            //if(page==2){Track2.stop(); Track2.release();}
+            //if(page==3){Track3.stop(); Track3.release();}  
+            //if(page==4){Track4.stop(); Track4.release();}
+            //if(page==5){Track5.stop(); Track5.release();}
+            //if(page==6){Track6.stop(); Track6.release();}    
+            //if(page==7){Track7.stop(); Track7.release();}
+            //if(page==8){Track8.stop(); Track8.release();}
+            //if(page==9){Track9.stop(); Track9.release();}    
+            //if(page==10){Track10.stop(); Track10.release();}
+            //if(page==11){Track11.stop(); Track11.release();}
+            if(page==0){Track0.pause();}
+            if(page==1){Track1.pause();}
+            if(page==2){Track2.pause();}
+            if(page==3){Track3.pause();}  
+            if(page==4){Track4.pause();}
+            if(page==5){Track5.pause();}
+            if(page==6){Track6.pause();}    
+            if(page==7){Track7.pause();}
+            if(page==8){Track8.pause();}
+            if(page==9){Track9.pause();}    
+            if(page==10){Track10.pause();}
+            if(page==11){Track11.pause();}             
             isPlaying = 0;
             page = 0;
          }    
